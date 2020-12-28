@@ -55,10 +55,10 @@ const Signup = () => {
     ) {
       return setFormValidity(true);
     } else if (
-      firstnameError.length != 0 ||
-      lastnameError.length != 0 ||
-      passwordError.length != 0 ||
-      emailError.length != 0
+      firstnameError.length > 0 ||
+      lastnameError.length > 0 ||
+      passwordError.length > 0 ||
+      emailError.length > 0
     ) {
       return setFormValidity(true);
     } else {
@@ -102,7 +102,7 @@ const Signup = () => {
   };
 
   submit = () => {
-    if (isValid) {
+    if (!isValid) {
       console.log('Signup successful');
     }
   };
