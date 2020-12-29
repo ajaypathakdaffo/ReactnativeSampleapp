@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import {
-  StyleSheet,
   ScrollView,
   View,
   Text,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import {spacingVertical, spacingHorizontal} from '../../constants/appstyle';
+import {styles} from '../signup/signupstyle'
 
 const Signup = () => {
   const [firstname, setFirstname] = useState('');
@@ -26,22 +25,22 @@ const Signup = () => {
 
   const formField = ['firstname', 'lastname', 'email', 'password'];
 
-  getValue = (fieldNmae) => {
-    if (fieldNmae === 'firstname') {
+  getValue = (fieldName) => {
+    if (fieldName === 'firstname') {
       return firstname;
-    } else if (fieldNmae === 'lastname') {
+    } else if (fieldName === 'lastname') {
       return lastname;
-    } else if (fieldNmae === 'email') {
+    } else if (fieldName === 'email') {
       return email;
-    } else if (fieldNmae === 'password') {
+    } else if (fieldName === 'password') {
       return password;
-    } else if (fieldNmae === 'firstnameError') {
+    } else if (fieldName === 'firstnameError') {
       return firstnameError;
-    } else if (fieldNmae === 'lastnameError') {
+    } else if (fieldName === 'lastnameError') {
       return lastnameError;
-    } else if (fieldNmae === 'emailError') {
+    } else if (fieldName === 'emailError') {
       return emailError;
-    } else if (fieldNmae === 'passwordError') {
+    } else if (fieldName === 'passwordError') {
       return passwordError;
     }
   };
@@ -65,8 +64,8 @@ const Signup = () => {
       return setFormValidity(false);
     }
   };
-  setValue = (text, fieldNmae) => {
-    switch (fieldNmae) {
+  setValue = (text, fieldName) => {
+    switch (fieldName) {
       case 'email':
         setEmail(text);
         validEmailRegex.test(text)
@@ -123,11 +122,9 @@ const Signup = () => {
                 required
               />
               <View style={styles.errorViewStyle}>
-                {true ? (
-                  <Text style={styles.errorText}>
-                    {getValue(`${field}Error`)}
-                  </Text>
-                ) : null}
+                <Text style={styles.errorText}>
+                  {getValue(`${field}Error`)}
+                </Text>
               </View>
             </View>
           );
@@ -143,44 +140,6 @@ const Signup = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-  },
-  textInputStyle: {
-    width: spacingHorizontal(280),
-    height: spacingVertical(30),
-    borderBottomWidth: 1,
-    marginBottom: spacingVertical(10),
-    fontSize: 20,
-  },
-  buttonStyle: {
-    backgroundColor: '#90ee90',
-    borderRadius: 10,
-    height: spacingVertical(30),
-    width: spacingHorizontal(200),
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: spacingVertical(5),
-  },
-  statusMessageContainer: {
-    padding: spacingHorizontal(10),
-    margin: spacingHorizontal(10),
-  },
-  statusMessagestyle: {
-    fontSize: spacingHorizontal(14),
-  },
-  errorViewStyle: {
-    height: spacingVertical(14),
-    borderRadius: 10,
-    alignItems: 'flex-end',
-  },
-  errorText: {
-    color: '#ff6600',
-    fontSize: 14,
-  },
-});
+
 
 export default Signup;
