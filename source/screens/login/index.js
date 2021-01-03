@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text} from 'react-native';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import {styles} from '../login/loginStyle'
-
+import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
+import {styles} from '../login/loginStyle';
 
 const Login = (props) => {
   const [username, setUsername] = useState('');
@@ -52,6 +51,13 @@ const Login = (props) => {
           props.navigation.navigate('Signup');
         }}>
         <Text>Signup</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.buttonStyle}
+        onPress={() => {
+          props.navigation.navigate('MyList');
+        }}>
+        <Text>scroll</Text>
       </TouchableOpacity>
     </View>
   );
