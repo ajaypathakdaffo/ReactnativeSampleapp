@@ -1,16 +1,14 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import Login from '../screens/login';
-import Signup from '../screens/signup';
+import DrawerNavigator from './drawernavigator';
 
+console.disableYellowBox = true;
 
 const AppNavigation = () => {
-  const Stack = createStackNavigator();
   return (
-    <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name='Signup' component={Signup}/>
-    </Stack.Navigator>
+    <>
+      <DrawerNavigator />
+      <TabNavigator />
+    </>
   );
 };
 
