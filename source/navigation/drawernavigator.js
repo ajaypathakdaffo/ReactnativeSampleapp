@@ -12,11 +12,13 @@ console.disableYellowBox = true;
 
 const DrawerNavigator = () => {
   return (
-    <Drawer.Navigator initialRouteName="Panel">
-      <Drawer.Screen name="Panel" component={TabNavigator} />
-      <Drawer.Screen name="Login" component={Login} />
+    <Drawer.Navigator initialRouteName="Panel" drawerType={'slide'}
+      gesturesEnabled={false}
+    >
+      <Drawer.Screen name="Panel" component={TabNavigator} options={{ gestureEnabled: false,swipeEnabled:false }} />
+      {/* <Drawer.Screen name="Login" component={Login}  options={{ gestureEnabled: false,swipeEnabled:false }} />
       <Drawer.Screen name="Signup" component={Signup} />
-      <Drawer.Screen name="MyList" component={MyList} />
+      <Drawer.Screen name="MyList" component={MyList} /> */}
     </Drawer.Navigator>
   );
 };

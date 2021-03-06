@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import {
   FlatList,
   SafeAreaView,
@@ -25,10 +25,19 @@ const Item = ({item, onPress, style}) => (
   </TouchableOpacity>
 );
 
-const Mylist = () => {
+const Mylist = ({navigation, route}) => {
   const [selectedId, setSelectedId] = useState(null);
   const [Data, setData] = useState({});
   const [loading, setLoading] = useState(false);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({gestureEnabled: true})
+    // route.state !== undefined
+    //   ? route.state.index > 0
+    //     ? navigation.setOptions({gestureEnabled: false})
+    //     : navigation.setOptions({gestureEnabled: true})
+    //   : null;
+  }, [navigation, route]);
 
   useEffect(() => {
     axios

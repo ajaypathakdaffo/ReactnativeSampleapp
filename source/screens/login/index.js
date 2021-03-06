@@ -1,14 +1,18 @@
-import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, Linking} from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import {styles} from '../login/loginStyle';
+import {connect} from 'react-redux';
+import {increment} from '../../redux/actions';
 
 const Login = (props) => {
+  const {navigation} = props
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
   const loginPress = () => {
+    navigation.openDrawer();
     if (username === '' || password === '') {
       setMessage('please fill all the required fields !');
     } else if (username === 'ajay' && password == 'hrhk@1234') {
@@ -22,6 +26,9 @@ const Login = (props) => {
 
   return (
     <View style={styles.container}>
+      <View>
+        <Text>{props.counter}</Text>
+      </View>
       <View style={styles.statusMessageContainer}>
         {message ? (
           <Text style={styles.statusMessagestyle}>{message}</Text>
@@ -59,8 +66,26 @@ const Login = (props) => {
         }}>
         <Text>scroll</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.buttonStyle}
+        onPress={() => {
+          props.increment(props.counter);
+        }}>
+        <Text>Increment</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
-export default Login;
+const mapStateToProps = (state, props) => {
+  const {counter} = state;
+  return {
+    counter,
+  };
+};
+
+const mapDispatchToProps = {
+  increment,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

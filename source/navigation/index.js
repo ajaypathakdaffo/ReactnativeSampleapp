@@ -1,13 +1,13 @@
 import React from 'react';
+import TabNavigator from './tabnavigation';
 import DrawerNavigator from './drawernavigator';
 
-console.disableYellowBox = true;
 
 const AppNavigation = () => {
   return (
     <>
       <DrawerNavigator />
-      <TabNavigator />
+      {/* <TabNavigator /> */}
     </>
   );
 };
